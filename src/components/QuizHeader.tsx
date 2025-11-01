@@ -1,6 +1,7 @@
 import React from 'react';
 import { Undo, Trash2, Eye, Edit } from '@/components/icons/Index';
 import { Button, Badge, Typography } from '@/components/ui';
+import LogoBanner from '@/components/LogoBanner';
 import NoroffLogo from '@/assets/noroff-logo.png';
 
 /**
@@ -55,11 +56,7 @@ const QuizHeader: React.FC = () => {
   return (
     <header className="w-full bg-gradient-card shadow-elegant backdrop-blur-sm">
       <div className="container mx-auto">
-        <div
-          className="relative flex justify-center border-b p-6"
-        >
-          <img src={NoroffLogo} alt="Noroff logo" className="h-8 relative z-10" />
-        </div>
+        <LogoBanner />
         <div className="flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between">
           {/* Left */}
           <div className="flex gap-3">
