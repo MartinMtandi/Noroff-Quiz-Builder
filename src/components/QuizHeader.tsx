@@ -1,5 +1,5 @@
 import React from 'react';
-import { Undo, Trash2, Eye, Edit } from '@/components/icons';
+import { Undo, Trash2, Eye, Edit } from '@/components/icons/Index';
 import { Button, Badge } from '@/components/ui';
 import NoroffLogo from '@/assets/noroff-logo.png';
 
@@ -53,10 +53,14 @@ const QuizHeader: React.FC = () => {
   } = useQuizHeaderState();
 
   return (
-    <header className="w-full border-b bg-gradient-card shadow-elegant backdrop-blur-sm">
+    <header className="w-full bg-gradient-card shadow-elegant backdrop-blur-sm">
       <div className="container mx-auto">
-        <img src={NoroffLogo} alt="Noroff logo" className="h-8" />
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+        <div
+          className="relative flex justify-center border-b p-6"
+        >
+          <img src={NoroffLogo} alt="Noroff logo" className="h-8 relative z-10" />
+        </div>
+        <div className="flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between">
           {/* Left */}
           <div className="flex gap-3">
             <div className="text-left">
