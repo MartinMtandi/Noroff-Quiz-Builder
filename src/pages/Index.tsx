@@ -1,7 +1,8 @@
-import QuizBuilder from '@/components/QuizBuilder';
 
 const Index = () => {
-  return <QuizBuilder />;
+  return <div>
+    kskdlskdlksd
+  </div>
 };
 
 export default Index;
