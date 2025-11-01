@@ -1,6 +1,6 @@
 import React from 'react';
 import { Undo, Trash2, Eye, Edit } from '@/components/icons/Index';
-import { Button, Badge } from '@/components/ui';
+import { Button, Badge, Typography } from '@/components/ui';
 import NoroffLogo from '@/assets/noroff-logo.png';
 
 /**
@@ -64,9 +64,9 @@ const QuizHeader: React.FC = () => {
           {/* Left */}
           <div className="flex gap-3">
             <div className="text-left">
-              <h1 className="text-3xl font-bold text-foreground">Quiz Builder</h1>
+              <Typography as="h1" weight={500}>Quiz Builder</Typography>
               <div className="mt-1 flex gap-2">
-                <p className="text-sm text-muted-foreground">Create and preview accessible quizzes</p>
+                <Typography as="p" color="text-gray-500">Create and preview accessible quizzes</Typography>
                 {quiz.questions.length > 0 && (
                   <Badge variant="secondary" className="ml-2">
                     {quiz.questions.length}{' '}
