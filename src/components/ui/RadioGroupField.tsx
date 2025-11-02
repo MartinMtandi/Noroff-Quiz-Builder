@@ -1,5 +1,6 @@
 import React, { ChangeEvent, FocusEvent, useState } from "react";
-import Typography from "./Typography";
+import Typography from './Typography';
+import * as fs from '@/utils/fieldStyles';
 import { useValidation } from "./useValidation";
 import { RadioGroupFieldProps } from "@/types/Index";
 
@@ -29,7 +30,7 @@ const RadioGroupField: React.FC<RadioGroupFieldProps> = ({
 
   return (
     <fieldset className={className}>
-      <Typography as="label" htmlFor={name} className={styles.legend}>
+      <Typography as="label" htmlFor={name} className={fs.label}>
         {label}
       </Typography>
 
@@ -53,7 +54,7 @@ const RadioGroupField: React.FC<RadioGroupFieldProps> = ({
       </div>
 
       {error && (
-        <Typography as="p" className={styles.errorText}>
+        <Typography as="p" className={fs.errorText}>
           {error}
         </Typography>
       )}
@@ -62,11 +63,9 @@ const RadioGroupField: React.FC<RadioGroupFieldProps> = ({
 };
 
 const styles = {
-  legend: "mb-1 block text-sm font-medium text-gray-700",
-  optionGroup: "flex flex-col gap-2",
+    optionGroup: "flex flex-col gap-2",
   optionLabel: "inline-flex items-center gap-2 text-sm text-gray-700 cursor-pointer",
   radioInput: "h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-500",
-  errorText: "mt-1 text-sm text-red-600",
-};
+  };
 
 export default RadioGroupField;

@@ -1,5 +1,6 @@
 import React, { ChangeEvent, FocusEvent, useState, useId } from 'react';
 import Typography from './Typography';
+import * as fs from '@/utils/fieldStyles';
 import { useValidation } from './useValidation';
 import { CheckboxFieldProps } from '@/types/Index';
 
@@ -39,13 +40,13 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
           onBlur={handleBlur}
           className={styles.checkbox}
         />
-        <Typography as="label" htmlFor={inputId} className={styles.label}>
+        <Typography as="label" htmlFor={inputId} className={fs.label}>
           {label}
         </Typography>
       </div>
 
       {error && (
-        <Typography as="p" className={styles.errorText}>
+        <Typography as="p" className={fs.errorText}>
           {error}
         </Typography>
       )}
@@ -57,8 +58,6 @@ const styles = {
   wrapper: "",
   checkboxGroup: "inline-flex items-center gap-2",
   checkbox: "h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500",
-  label: "text-sm text-gray-700 cursor-pointer",
-  errorText: "mt-1 text-sm text-red-600",
 };
 
 export default CheckboxField;

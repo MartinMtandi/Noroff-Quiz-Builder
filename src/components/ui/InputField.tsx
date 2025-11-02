@@ -2,6 +2,7 @@ import React, { ChangeEvent, FocusEvent, useState, useId } from 'react';
 import Typography from './Typography';
 import { InputFieldProps } from '@/types/Index';
 import { useValidation } from './useValidation';
+import * as fs from '@/utils/fieldStyles';
 
 const InputField: React.FC<InputFieldProps> = ({
   label,
@@ -29,28 +30,22 @@ const InputField: React.FC<InputFieldProps> = ({
 
   return (
     <div className={className}>
-      <Typography as="label" htmlFor={inputId}>{label}</Typography>
+      <Typography as="label" htmlFor={inputId} className={fs.label}>{label}</Typography>
       <input
         id={inputId}
         {...props}
         value={value}
         onChange={handleChange}
         onBlur={handleBlur}
-        className={error ? `${styles.base} ${styles.errorStyle}` : styles.base}
+        className={error ? `${fs.baseInput} ${fs.baseError}` : fs.baseInput}
       />
       {error && (
-        <Typography as="p" className={styles.errorText}>
+        <Typography as="p" className={fs.errorText}>
           {error}
         </Typography>
       )}
     </div>
   );
-};
-
-const styles = {
-  errorText: "mt-1 text-sm text-red-600",
-  errorStyle : 'border-red-500 focus:border-red-500 focus:ring-red-500',
-  base : 'block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm',
 };
 
 export default InputField;
