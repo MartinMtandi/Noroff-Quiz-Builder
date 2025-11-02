@@ -57,7 +57,7 @@ const QuizHeader: React.FC = () => {
     <header className="w-full bg-gradient-card shadow-elegant backdrop-blur-sm">
       <div className="container mx-auto">
         <LogoBanner />
-        <div className="flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="bg-gradient-primary flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between">
           {/* Left */}
           <div className="flex gap-3">
             <div className="text-left">
@@ -78,7 +78,7 @@ const QuizHeader: React.FC = () => {
           <div className="flex flex-wrap gap-2">
             <Button
               variant="outline"
-              size="sm"
+              size="md"
               onClick={handleUndo}
               disabled={!canUndo}
               className="gap-2"
@@ -88,7 +88,7 @@ const QuizHeader: React.FC = () => {
             </Button>
             <Button
               variant="outline"
-              size="sm"
+              size="md"
               onClick={() => setShowClearDialog(true)}
               disabled={quiz.questions.length === 0}
               className="gap-2 text-destructive hover:bg-destructive/10"
@@ -98,7 +98,7 @@ const QuizHeader: React.FC = () => {
             </Button>
             <Button
               variant={mode === 'preview' ? 'gradient' : 'outline'}
-              size="sm"
+              size="md"
               onClick={toggleMode}
               disabled={quiz.questions.length === 0}
               className="gap-2"
