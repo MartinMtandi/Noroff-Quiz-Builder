@@ -1,7 +1,12 @@
+import Card from "@/components/ui/Card";
 
 const Index = () => {
   return <div>
-    kskdlskdlksd
+    <Card>
+      <div>
+        fgfgfg
+      </div>
+    </Card>
   </div>
 };
 
