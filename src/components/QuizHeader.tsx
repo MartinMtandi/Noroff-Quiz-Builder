@@ -54,20 +54,20 @@ const QuizHeader: React.FC = () => {
   } = useQuizHeaderState();
 
   return (
-    <header className="w-full bg-gradient-card shadow-elegant backdrop-blur-sm">
-      <div className="container mx-auto">
+    <header className={styles.header}>
+      <div className={styles.container}>
         <LogoBanner />
-        <div className="bg-gradient-primary flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className={styles.banner}>
           {/* Left */}
-          <div className="flex gap-3">
-            <div className="text-left">
+          <div className={styles.left}>
+            <div className={styles.title}>
               <Typography as="h1" weight={500}>Quiz Builder</Typography>
-              <div className="mt-1 flex gap-2">
+              <div className={styles.subtitle}>
                 <Typography as="p" color="text-gray-500">Create and preview accessible quizzes</Typography>
                 {quiz.questions.length > 0 && (
                   <Badge variant="secondary" className="ml-2">
-                    {quiz.questions.length}{' '}
-                    {quiz.questions.length === 1 ? 'Question' : 'Questions'}
+                    {quiz.questions.length}{" "}
+                    {quiz.questions.length === 1 ? "Question" : "Questions"}
                   </Badge>
                 )}
               </div>
@@ -75,35 +75,35 @@ const QuizHeader: React.FC = () => {
           </div>
 
           {/* Right */}
-          <div className="flex flex-wrap gap-2">
+          <div className={styles.actions}>
             <Button
               variant="outline"
               size="md"
               onClick={handleUndo}
               disabled={!canUndo}
-              className="gap-2"
+              className={styles.iconButton}
             >
-              <Undo className="h-4 w-4" />
-              Undo
+              <Undo className="h-4 w-4" /> Undo
             </Button>
+
             <Button
               variant="outline"
               size="md"
               onClick={() => setShowClearDialog(true)}
               disabled={quiz.questions.length === 0}
-              className="gap-2 text-destructive hover:bg-destructive/10"
+              className={styles.dangerButton}
             >
-              <Trash2 className="h-4 w-4" />
-              Clear Quiz
+              <Trash2 className="h-4 w-4" /> Clear Quiz
             </Button>
+
             <Button
-              variant={mode === 'preview' ? 'gradient' : 'outline'}
+              variant={mode === "preview" ? "gradient" : "outline"}
               size="md"
               onClick={toggleMode}
               disabled={quiz.questions.length === 0}
-              className="gap-2"
+              className={styles.iconButton}
             >
-              {mode === 'edit' ? (
+              {mode === "edit" ? (
                 <>
                   <Eye className="h-4 w-4" /> Preview
                 </>
@@ -118,6 +118,18 @@ const QuizHeader: React.FC = () => {
       </div>
     </header>
   );
+};
+
+const styles = {
+  header: "w-full bg-gradient-card shadow-elegant backdrop-blur-sm",
+  container: "container mx-auto",
+  banner: "bg-gradient-primary flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between",
+  left: "flex gap-3",
+  title: "text-left",
+  subtitle: "mt-1 flex gap-2",
+  actions: "flex flex-wrap gap-2",
+  iconButton: "gap-2",
+  dangerButton: "gap-2 text-destructive hover:bg-destructive/10",
 };
 
 export default QuizHeader;
