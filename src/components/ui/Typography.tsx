@@ -14,7 +14,7 @@ export type TypographyVariant =
   | 'h4'
   | 'h5'
   | 'h6'
-  | 'label';
+  | 'label' | 'legend';
 
 type FontWeight = 'normal' | 500;
 
@@ -37,6 +37,7 @@ const sizeClasses: Record<TypographyVariant, string> = {
   h5: 'text-lg',
   h6: 'text-base font-semibold',
   label: 'text-sm',
+  legend: 'text-sm',
 };
 
 const weightClasses: Record<FontWeight, string> = {
