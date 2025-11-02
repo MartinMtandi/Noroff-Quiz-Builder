@@ -1,13 +1,12 @@
 import Card from "@/components/ui/Card";
+import QuizBuilder from "@/components/QuizBuilder";
 
 const Index = () => {
-  return <div>
+  return (
     <Card>
-      <div>
-        fgfgfg
-      </div>
+      <QuizBuilder />
     </Card>
-  </div>
+  );
 };
 
 export default Index;

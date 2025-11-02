@@ -36,7 +36,7 @@ const sizeClasses: Record<TypographyVariant, string> = {
   h4: 'text-xl',
   h5: 'text-lg',
   h6: 'text-base font-semibold',
-  label: 'text-sm',
+  label: 'mb-1 block text-sm text-gray-700 font-semibold',
   legend: 'text-sm',
 };
 
