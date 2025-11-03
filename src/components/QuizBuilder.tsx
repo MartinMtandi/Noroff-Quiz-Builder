@@ -9,6 +9,7 @@ interface OptionItem { text: string; correct: boolean; }
 const QuizBuilder: React.FC = () => {
     const [questionType, setQuestionType] = useState<'single' | 'multiple' | 'short' | ''>('');
     const [submitted, setSubmitted] = useState(false);
+    const [questionTitle, setQuestionTitle] = useState('');
     const [options, setOptions] = useState<OptionItem[]>([
         { text: '', correct: false },
         { text: '', correct: false },
@@ -27,7 +28,13 @@ const QuizBuilder: React.FC = () => {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setSubmitted(true);
-        // further processing if no errors
+        // gather form values
+        const payload = {
+            questionTitle,
+            questionType,
+            options,
+        };
+        console.log('Form data:', payload);
     };
 
     return (
@@ -38,6 +45,7 @@ const QuizBuilder: React.FC = () => {
                 placeholder="Enter question title"
                 validators={[required()]}
                 submitted={submitted}
+                onChange={(e) => setQuestionTitle((e.target as HTMLInputElement).value)}
             />
             <RadioGroupField
                 submitted={submitted}
