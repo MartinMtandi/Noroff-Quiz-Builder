@@ -54,7 +54,7 @@ const QuizBuilder: React.FC = () => {
 
             {/* Footer */}
             <div className="border-t pt-4 mt-4 flex justify-end -mx-6 px-6">
-                <Button className="gap-2" variant="gradientBorder" size="md" type="submit">
+                <Button className="gap-2" variant="gradientBorder" size="lg" type="submit">
                     <Add className="h-4 w-4" /> Save Question
                 </Button>
             </div>
