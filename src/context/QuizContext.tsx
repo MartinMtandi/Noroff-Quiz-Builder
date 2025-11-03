@@ -56,7 +56,7 @@ const reducer = (state: State, action: Action): State => {
   }
 };
 
-const QuizContext = createContext<QuizContextValue | undefined>(undefined);
+export const QuizContext = createContext<QuizContextValue | undefined>(undefined);
 
 export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, { questions: [], history: [] });
@@ -84,9 +84,3 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
   return <QuizContext.Provider value={value}>{children}</QuizContext.Provider>;
 };
 
-/* ---------- Hook ---------- */
-export const useQuiz = () => {
-  const ctx = useContext(QuizContext);
-  if (!ctx) throw new Error('useQuiz must be used within <QuizProvider>');
-  return ctx;
-};
