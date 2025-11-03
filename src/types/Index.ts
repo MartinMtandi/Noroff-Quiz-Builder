@@ -56,3 +56,28 @@ export interface OptionsFieldProps {
   setOptions: (opts: OptionItem[]) => void;
   submitted?: boolean;
 }
+
+/**
+ * Question model – extend as needed.
+ */
+export interface Question {
+  id: string;
+  title: string;
+  type: 'single' | 'multiple' | 'short';
+  options: OptionItem[];
+}
+
+export interface State {
+  questions: Question[];
+  history: Question[][]; // stack of previous questions for simple undo
+}
+
+/* ---------- Context ---------- */
+export interface QuizContextValue {
+  questions: Question[];
+  add: (q: Question) => void;
+  update: (q: Question) => void;
+  remove: (id: string) => void;
+  clear: () => void;
+  undo: () => void;
+}

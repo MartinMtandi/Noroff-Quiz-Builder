@@ -1,6 +1,7 @@
-import React from 'react'
+import React from 'react';
+import { QuizProvider } from '@/context/QuizContext';
 import { createRoot } from 'react-dom/client'
 import App from './App'
 import './index.css'
 const root = createRoot(document.getElementById('root')!)
-root.render(<App />)
+root.render(<QuizProvider><App /></QuizProvider>)
