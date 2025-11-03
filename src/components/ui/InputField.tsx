@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FocusEvent, useState, useId, useEffect } from 'react';
 import Typography from './Typography';
 import { InputFieldProps } from '@/types/Index';
-import { useValidation } from './useValidation';
+import { useValidation } from '../../hooks/useValidation';
 import * as fs from '@/utils/fieldStyles';
 
 const InputField: React.FC<InputFieldProps> = ({

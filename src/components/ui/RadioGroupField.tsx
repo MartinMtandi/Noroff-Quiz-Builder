@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FocusEvent, useState, useEffect } from "react";
 import Typography from './Typography';
 import * as fs from '@/utils/fieldStyles';
-import { useValidation } from "./useValidation";
+import { useValidation } from "../../hooks/useValidation";
 import { RadioGroupFieldProps } from "@/types/Index";
 
 const RadioGroupField: React.FC<RadioGroupFieldProps> = ({

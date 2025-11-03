@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { InputField, RadioGroupField, Button } from '@/components/ui';
 import OptionsField from '@/components/ui/OptionsField';
-import { required } from '@/components/ui/validators';
+import { required } from '@/utils/validators';
 import { Add } from './icons/Index';
 
 interface OptionItem { text: string; correct: boolean; }

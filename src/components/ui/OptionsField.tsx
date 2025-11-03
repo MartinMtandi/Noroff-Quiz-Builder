@@ -3,7 +3,7 @@ import { InputField, Button, Typography } from '@/components/ui';
 import CheckboxField from './CheckboxField';
 import RadioField from './RadioField';
 import { Add } from '../icons/Index';
-import { required } from './validators';
+import { required } from '../../utils/validators';
 import { OptionsFieldProps } from '@/types/Index';
 
 const OptionsField: React.FC<OptionsFieldProps> = ({ type, options, setOptions, submitted = false }) => {

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Validator, composeValidators } from './validators';
+import { Validator, composeValidators } from '../utils/validators';
 
 export const useValidation = (validators: Validator[] = []) => {
   const [error, setError] = useState<string | null>(null);

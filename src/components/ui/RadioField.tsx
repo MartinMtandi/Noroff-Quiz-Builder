@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FocusEvent, useId } from 'react';
 import Typography from './Typography';
 import * as fs from '@/utils/fieldStyles';
-import { useValidation } from './useValidation';
+import { useValidation } from '../../hooks/useValidation';
 import { CheckboxFieldProps } from '@/types/Index';
 
 // Re-use CheckboxFieldProps since both share same external API (except input type)

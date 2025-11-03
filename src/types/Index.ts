@@ -1,4 +1,4 @@
-import { Validator } from "@/components/ui/validators";
+import { Validator } from "@/utils/validators";
 import { ReactNode, InputHTMLAttributes, TextareaHTMLAttributes, SelectHTMLAttributes } from "react";
 
 // Common props for all field components

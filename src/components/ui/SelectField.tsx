@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FocusEvent, useState, useId } from 'react';
 import Typography from './Typography';
-import { useValidation } from './useValidation';
+import { useValidation } from '../../hooks/useValidation';
 import { SelectFieldProps } from '@/types/Index';
 
 const SelectField: React.FC<SelectFieldProps> = ({

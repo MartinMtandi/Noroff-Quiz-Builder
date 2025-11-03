@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FocusEvent, useState, useId } from 'react';
 import Typography from './Typography';
-import { Validator } from './validators';
-import { useValidation } from './useValidation';
+import { Validator } from '../../utils/validators';
+import { useValidation } from '../../hooks/useValidation';
 import { TextAreaFieldProps } from '@/types/Index';
 
 const TextAreaField: React.FC<TextAreaFieldProps> = ({
