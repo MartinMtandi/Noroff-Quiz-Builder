@@ -13,7 +13,8 @@ const baseStyles = 'inline-flex items-center justify-center rounded-md font-medi
 const variantStyles: Record<string, string> = {
   outline:
     'me-2 mb-2 font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 focus:outline-none dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700',
-  gradient: 'bg-gradient-primary text-white shadow-glow',
+  gradient:
+    'text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:ring-pink-200 dark:focus:ring-pink-800 shadow-glow',
 };
 
 const sizeStyles: Record<string, string> = {
