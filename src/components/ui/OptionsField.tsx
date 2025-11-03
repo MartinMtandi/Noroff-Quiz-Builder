@@ -1,5 +1,7 @@
 import React from 'react';
 import { InputField, Button, Typography } from '@/components/ui';
+import CheckboxField from './CheckboxField';
+import RadioField from './RadioField';
 import { Add } from '../icons/Index';
 
 interface OptionItem {
@@ -42,19 +44,19 @@ const OptionsField: React.FC<OptionsFieldProps> = ({ type, options, setOptions }
       {options.map((opt, idx) => (
         <div key={idx} className="flex items-start gap-2">
           {type === 'single' ? (
-            <input
-              type="radio"
+            <RadioField
+              label=""
               name="correctOption"
               checked={opt.correct}
-              onChange={(e) => handleCorrectChange(idx, e.target.checked)}
-              className="mt-3 h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+              onChange={(e) => handleCorrectChange(idx, (e.target as HTMLInputElement).checked)}
+              className="mt-3"
             />
           ) : (
-            <input
-              type="checkbox"
+            <CheckboxField
+              label=""
               checked={opt.correct}
-              onChange={(e) => handleCorrectChange(idx, e.target.checked)}
-              className="mt-3 h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+              onChange={(e) => handleCorrectChange(idx, (e.target as HTMLInputElement).checked)}
+              className="mt-3"
             />
           )}
           <div className="flex-1">

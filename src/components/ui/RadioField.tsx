@@ -4,13 +4,17 @@ import * as fs from '@/utils/fieldStyles';
 import { useValidation } from './useValidation';
 import { CheckboxFieldProps } from '@/types/Index';
 
-const CheckboxField: React.FC<CheckboxFieldProps> = ({
+// Re-use CheckboxFieldProps since both share same external API (except input type)
+export type RadioFieldProps = CheckboxFieldProps & { name: string };
+
+const RadioField: React.FC<RadioFieldProps> = ({
   label,
   validators,
   className,
   onBlur,
   onChange,
   id,
+  name,
   ...props
 }) => {
   const inputId = id || useId();
@@ -27,16 +31,17 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
   };
 
   return (
-     <div className={`${styles.wrapper} ${className || ''}`}>
-      <div className={styles.checkboxGroup}>
+    <div className={`${styles.wrapper} ${className || ''}`}>
+      <div className={styles.radioGroup}>
         <input
           id={inputId}
-          type="checkbox"
+          type="radio"
+          name={name}
           {...props}
           checked={props.checked}
           onChange={handleChange}
           onBlur={handleBlur}
-          className={styles.checkbox}
+          className={styles.radio}
         />
         <Typography as="label" htmlFor={inputId} className={fs.label}>
           {label}
@@ -53,9 +58,9 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
 };
 
 const styles = {
-  wrapper: "",
-  checkboxGroup: "inline-flex items-center gap-2",
-  checkbox: "h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500",
+  wrapper: '',
+  radioGroup: 'inline-flex items-center gap-2',
+  radio: 'h-4 w-4 rounded-full border-gray-300 text-blue-600 focus:ring-blue-500',
 };
 
-export default CheckboxField;
+export default RadioField;
