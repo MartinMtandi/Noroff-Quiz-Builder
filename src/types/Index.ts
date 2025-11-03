@@ -43,3 +43,14 @@ export interface SelectFieldProps
     BaseFieldProps {
   options: Option[];
 }
+
+export interface OptionItem {
+  text: string;
+  correct: boolean;
+}
+
+export interface OptionsFieldProps {
+  type: 'single' | 'multiple';
+  options: OptionItem[];
+  setOptions: (opts: OptionItem[]) => void;
+}

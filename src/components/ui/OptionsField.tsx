@@ -3,17 +3,7 @@ import { InputField, Button, Typography } from '@/components/ui';
 import CheckboxField from './CheckboxField';
 import RadioField from './RadioField';
 import { Add } from '../icons/Index';
-
-interface OptionItem {
-  text: string;
-  correct: boolean;
-}
-
-interface OptionsFieldProps {
-  type: 'single' | 'multiple';
-  options: OptionItem[];
-  setOptions: (opts: OptionItem[]) => void;
-}
+import { OptionsFieldProps } from '@/types/Index';
 
 const OptionsField: React.FC<OptionsFieldProps> = ({ type, options, setOptions }) => {
   const handleTextChange = (idx: number, value: string) => {
