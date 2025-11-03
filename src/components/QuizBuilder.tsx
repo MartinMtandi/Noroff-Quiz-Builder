@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { InputField, RadioGroupField } from '@/components/ui';
+import { InputField, RadioGroupField, Button } from '@/components/ui';
 import OptionsField from '@/components/ui/OptionsField';
 import { required } from '@/components/ui/validators';
+import { Add } from './icons/Index';
 
 interface OptionItem { text: string; correct: boolean; }
 
@@ -50,6 +51,13 @@ const QuizBuilder: React.FC = () => {
                 <OptionsField type={questionType as 'single' | 'multiple'} options={options} setOptions={setOptions} />
             )}
             {/* Future fields will go here */}
+
+            {/* Footer */}
+            <div className="border-t pt-4 mt-4 flex justify-end -mx-6 px-6">
+                <Button className="gap-2" variant="gradientBorder" size="md" type="submit">
+                    <Add className="h-4 w-4" /> Save Question
+                </Button>
+            </div>
         </form>
     );
 };

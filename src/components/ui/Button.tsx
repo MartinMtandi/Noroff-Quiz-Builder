@@ -4,7 +4,7 @@ function cx(...classes: (string | undefined | false)[]) {
 }
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'outline' | 'gradient';
+  variant?: 'outline' | 'gradient' | 'gradientBorder';
   size?: 'sm' | 'md' | 'lg';
 }
 
@@ -14,7 +14,13 @@ const variantStyles: Record<string, string> = {
   outline:
     'me-2 mb-2 font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 focus:outline-none dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700',
   gradient:
-    'text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:ring-pink-200 dark:focus:ring-pink-800 shadow-glow',
+    'text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 shadow-glow',
+  gradientBorder:
+    'relative inline-flex items-center justify-center p-0.5 overflow-hidden group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 text-gray-900 hover:text-white rounded-lg',
+};
+
+const innerSpanStyles: Record<string, string> = {
+  gradientBorder: 'relative inline-flex items-center justify-center transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent',
 };
 
 const sizeStyles: Record<string, string> = {
@@ -30,6 +36,19 @@ const Button: React.FC<ButtonProps> = ({
   children,
   ...rest
 }) => {
+  if (variant === 'gradientBorder') {
+    return (
+      <button
+        className={cx(baseStyles, variantStyles[variant])}
+        {...rest}
+      >
+        <span className={cx(sizeStyles[size], innerSpanStyles.gradientBorder, className)}>
+          {children}
+        </span>
+      </button>
+    );
+  }
+
   return (
     <button
       className={cx(baseStyles, variantStyles[variant], sizeStyles[size], className)}
