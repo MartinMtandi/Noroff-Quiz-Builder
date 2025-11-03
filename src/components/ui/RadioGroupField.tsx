@@ -63,7 +63,7 @@ const RadioGroupField: React.FC<RadioGroupFieldProps> = ({
 };
 
 const styles = {
-  optionGroup: "flex flex-col gap-2",
+  optionGroup: "flex flex-col gap-2 items-start",
   optionLabel: "inline-flex items-center gap-2 text-sm text-gray-700 cursor-pointer",
   radioInput: "h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-500",
 };
