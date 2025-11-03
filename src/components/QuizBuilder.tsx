@@ -15,6 +15,8 @@ const QuizBuilder: React.FC = () => {
     ]);
 
     const handleQuestionTypeChange = (type: 'single' | 'multiple' | 'short') => {
+        // selecting a new type shows/hides fields; reset validation state
+        setSubmitted(false);
         setQuestionType(type);
         setOptions([
             { text: '', correct: false },
