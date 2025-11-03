@@ -8,6 +8,7 @@ interface OptionItem { text: string; correct: boolean; }
 
 const QuizBuilder: React.FC = () => {
     const [questionType, setQuestionType] = useState<'single' | 'multiple' | 'short' | ''>('');
+    const [submitted, setSubmitted] = useState(false);
     const [options, setOptions] = useState<OptionItem[]>([
         { text: '', correct: false },
         { text: '', correct: false },
@@ -23,7 +24,8 @@ const QuizBuilder: React.FC = () => {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // handle form submission logic here
+        setSubmitted(true);
+        // further processing if no errors
     };
 
     return (
@@ -33,8 +35,10 @@ const QuizBuilder: React.FC = () => {
                 name="questionTitle"
                 placeholder="Enter question title"
                 validators={[required()]}
+                submitted={submitted}
             />
             <RadioGroupField
+                submitted={submitted}
                 label="*Question Type"
                 name="questionType"
                 id="questionType"
@@ -48,9 +52,8 @@ const QuizBuilder: React.FC = () => {
             />
 
             {questionType !== '' && questionType !== 'short' && (
-                <OptionsField type={questionType as 'single' | 'multiple'} options={options} setOptions={setOptions} />
+                <OptionsField submitted={submitted} type={questionType as 'single' | 'multiple'} options={options} setOptions={setOptions} />
             )}
-            {/* Future fields will go here */}
 
             {/* Footer */}
             <div className="border-t pt-4 mt-4 flex justify-end -mx-6 px-6">

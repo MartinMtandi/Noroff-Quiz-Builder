@@ -5,6 +5,7 @@ import { ReactNode, InputHTMLAttributes, TextareaHTMLAttributes, SelectHTMLAttri
 interface BaseFieldProps {
   label: string;
   validators?: Validator[];
+  submitted?: boolean;
 }
 
 // Shared type for option-based fields
@@ -53,4 +54,5 @@ export interface OptionsFieldProps {
   type: 'single' | 'multiple';
   options: OptionItem[];
   setOptions: (opts: OptionItem[]) => void;
+  submitted?: boolean;
 }

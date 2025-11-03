@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FocusEvent, useState } from "react";
+import React, { ChangeEvent, FocusEvent, useState, useEffect } from "react";
 import Typography from './Typography';
 import * as fs from '@/utils/fieldStyles';
 import { useValidation } from "./useValidation";
@@ -12,10 +12,18 @@ const RadioGroupField: React.FC<RadioGroupFieldProps> = ({
   className,
   onBlur,
   onChange,
+  submitted = false,
   ...props
 }) => {
   const [value, setValue] = useState("");
   const { error, validate } = useValidation(validators);
+
+  useEffect(() => {
+    if (submitted) {
+      validate(value);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [submitted]);
 
   const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
     validate(value);

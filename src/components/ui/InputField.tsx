@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FocusEvent, useState, useId } from 'react';
+import React, { ChangeEvent, FocusEvent, useState, useId, useEffect } from 'react';
 import Typography from './Typography';
 import { InputFieldProps } from '@/types/Index';
 import { useValidation } from './useValidation';
@@ -10,12 +10,20 @@ const InputField: React.FC<InputFieldProps> = ({
   className,
   onBlur,
   onChange,
+  submitted = false,
   id,
   ...props
 }) => {
   const [value, setValue] = useState('');
   const { error, validate } = useValidation(validators);
   const inputId = id || useId();
+
+  React.useEffect(() => {
+    if (submitted) {
+      validate(value);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [submitted]);
 
   const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
     validate(e.target.value);

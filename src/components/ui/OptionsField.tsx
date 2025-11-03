@@ -3,9 +3,10 @@ import { InputField, Button, Typography } from '@/components/ui';
 import CheckboxField from './CheckboxField';
 import RadioField from './RadioField';
 import { Add } from '../icons/Index';
+import { required } from './validators';
 import { OptionsFieldProps } from '@/types/Index';
 
-const OptionsField: React.FC<OptionsFieldProps> = ({ type, options, setOptions }) => {
+const OptionsField: React.FC<OptionsFieldProps> = ({ type, options, setOptions, submitted = false }) => {
   const handleTextChange = (idx: number, value: string) => {
     const newOpts = [...options];
     newOpts[idx].text = value;
@@ -55,6 +56,8 @@ const OptionsField: React.FC<OptionsFieldProps> = ({ type, options, setOptions }
               placeholder={`Option ${idx + 1}`}
               value={opt.text}
               onChange={(e) => handleTextChange(idx, e.target.value)}
+              validators={[required()]}
+              submitted={submitted}
             />
           </div>
         </div>
