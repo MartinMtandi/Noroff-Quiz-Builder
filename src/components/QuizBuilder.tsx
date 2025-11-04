@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { InputField, RadioGroupField, Button } from '@/components/ui';
+import { InputField, RadioGroupField, Button, Typography, Badge } from '@/components/ui';
 import { useQuiz } from '@/hooks/useQuiz';
 import OptionsField from '@/components/ui/OptionsField';
 import { required } from '@/utils/validators';
-import { Add } from './icons/Index';
+import { Add, ShieldCheck } from './icons/Index';
 import { OptionItem } from '@/types/Index';
 
 const QuizBuilder: React.FC = () => {
-    const { add } = useQuiz();
+    const { add, questions } = useQuiz();
     const [questionType, setQuestionType] = useState<'single' | 'multiple' | 'short' | ''>('');
     const [submitted, setSubmitted] = useState(false);
     const [questionTitle, setQuestionTitle] = useState('');
@@ -15,6 +15,12 @@ const QuizBuilder: React.FC = () => {
         { text: '', correct: false },
         { text: '', correct: false },
     ]);
+
+    const allOptionsFilled = options.every((o) => o.text.trim() !== '');
+  const hasCorrectOption = options.some((o) => o.correct);
+  const isFormValid = questionTitle.trim() !== '' && questionType !== '' && (
+    questionType === 'short' || (allOptionsFilled && hasCorrectOption)
+  );
 
     const handleQuestionTypeChange = (type: 'single' | 'multiple' | 'short') => {
         // selecting a new type shows/hides fields; reset validation state
@@ -40,10 +46,15 @@ const QuizBuilder: React.FC = () => {
 
     return (
         <form onSubmit={handleSubmit} className="space-y-4">
-            <InputField
-                label="*Question Title"
-                name="questionTitle"
-                placeholder="Enter question title"
+            <div className="flex items-center gap-2">
+                <ShieldCheck className="h-4 w-4" />
+                <Typography as="p" weight={500}>{(questions?.length ?? 0) + 1}</Typography>
+                <Badge state={isFormValid ? 'valid' : 'invalid'} text={isFormValid ? 'Valid' : 'Invalid'} />
+            </div>
+                <InputField
+                    label="*Question Title"
+                    name="questionTitle"
+                    placeholder="Enter question title"
                 validators={[required()]}
                 submitted={submitted}
                 onChange={(e) => setQuestionTitle((e.target as HTMLInputElement).value)}
