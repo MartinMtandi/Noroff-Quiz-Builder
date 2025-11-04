@@ -46,9 +46,9 @@ const QuizBuilder: React.FC = () => {
 
     return (
         <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="flex items-center gap-2">
-                <ShieldCheck className="h-4 w-4" />
-                <Typography as="p" weight={500}>{(questions?.length ?? 0) + 1}</Typography>
+            <div className={styles.question}>
+                <ShieldCheck className="h-4 w-4 text-blue-600" />
+                <Typography as="p" color="text-blue-600" weight={500}>{(questions?.length ?? 0) + 1}</Typography>
                 <Badge state={isFormValid ? 'valid' : 'invalid'} text={isFormValid ? 'Valid' : 'Invalid'} />
             </div>
                 <InputField
@@ -89,6 +89,7 @@ const QuizBuilder: React.FC = () => {
 
 const styles = {
   footer: "border-t pt-4 mt-4 flex justify-end -mx-6 px-6",
+  question: "flex items-center gap-2",
 };
 
 export default QuizBuilder;
