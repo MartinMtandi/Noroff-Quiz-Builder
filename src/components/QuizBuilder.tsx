@@ -42,16 +42,25 @@ const QuizBuilder: React.FC = () => {
             type: questionType as 'single' | 'multiple' | 'short',
             options,
         });
+        // clear form for next question
+        setQuestionTitle('');
+        setQuestionType('');
+        setOptions([
+            { text: '', correct: false },
+            { text: '', correct: false },
+        ]);
+        setSubmitted(false);
     };
 
     return (
         <form onSubmit={handleSubmit} className="space-y-4">
             <div className={styles.question}>
-                <ShieldCheck className="h-4 w-4 text-blue-600" />
+                <ShieldCheck className={styles.shieldCheck} />
                 <Typography as="p" color="text-blue-600" weight={500}>{(questions?.length ?? 0) + 1}</Typography>
                 <Badge state={isFormValid ? 'valid' : 'invalid'} text={isFormValid ? 'Valid' : 'Invalid'} />
             </div>
                 <InputField
+                    value={questionTitle}
                     label="*Question Title"
                     name="questionTitle"
                     placeholder="Enter question title"
@@ -90,6 +99,7 @@ const QuizBuilder: React.FC = () => {
 const styles = {
   footer: "border-t pt-4 mt-4 flex justify-end -mx-6 px-6",
   question: "flex items-center gap-2",
+  shieldCheck: "h-4 w-4 text-blue-600",
 };
 
 export default QuizBuilder;
