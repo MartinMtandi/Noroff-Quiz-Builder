@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { InputField, RadioGroupField, Button } from '@/components/ui';
+import { useQuiz } from '@/hooks/useQuiz';
 import OptionsField from '@/components/ui/OptionsField';
 import { required } from '@/utils/validators';
 import { Add } from './icons/Index';
-
-interface OptionItem { text: string; correct: boolean; }
+import { OptionItem } from '@/types/Index';
 
 const QuizBuilder: React.FC = () => {
+    const { add } = useQuiz();
     const [questionType, setQuestionType] = useState<'single' | 'multiple' | 'short' | ''>('');
     const [submitted, setSubmitted] = useState(false);
     const [questionTitle, setQuestionTitle] = useState('');
@@ -28,13 +29,13 @@ const QuizBuilder: React.FC = () => {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setSubmitted(true);
-        // gather form values
-        const payload = {
-            questionTitle,
-            questionType,
+        if (!questionType) return; // type safety – don't save if not chosen
+        add({
+            id: crypto.randomUUID(),
+            title: questionTitle.trim(),
+            type: questionType as 'single' | 'multiple' | 'short',
             options,
-        };
-        console.log('Form data:', payload);
+        });
     };
 
     return (
@@ -55,7 +56,7 @@ const QuizBuilder: React.FC = () => {
                 options={[
                     { label: 'Single Choice', value: 'single' },
                     { label: 'Multiple Choices', value: 'multiple' },
-                    { label: 'Short text', value: 'short' },
+                    { label: 'Short Text', value: 'short' },
                 ]}
                 validators={[required()]}
                 onChange={(e) => handleQuestionTypeChange(e.target.value as 'single' | 'multiple' | 'short')}
@@ -66,13 +67,17 @@ const QuizBuilder: React.FC = () => {
             )}
 
             {/* Footer */}
-            <div className="border-t pt-4 mt-4 flex justify-end -mx-6 px-6">
+            <div className={styles.footer}>
                 <Button className="gap-2" variant="gradientBorder" size="lg" type="submit">
                     <Add className="h-4 w-4" /> Save Question
                 </Button>
             </div>
         </form>
     );
+};
+
+const styles = {
+  footer: "border-t pt-4 mt-4 flex justify-end -mx-6 px-6",
 };
 
 export default QuizBuilder;

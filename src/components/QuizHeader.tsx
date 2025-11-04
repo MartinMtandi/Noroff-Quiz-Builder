@@ -2,37 +2,25 @@ import React from 'react';
 import { Undo, Trash2, Eye, Edit } from '@/components/icons/Index';
 import { Button, Badge, Typography } from '@/components/ui';
 import LogoBanner from '@/components/LogoBanner';
-import NoroffLogo from '@/assets/noroff-logo.png';
+import { useQuiz } from '@/hooks/useQuiz';
 
-/**
- * Temporary internal state and handlers to make the component self-contained.
- * Replace with your own state-management / context implementation later.
- */
 const useQuizHeaderState = () => {
-  const [quiz, setQuiz] = React.useState({ questions: [] as unknown[] });
-  const [history, setHistory] = React.useState<typeof quiz[]>([]);
+  const { questions, undo, clear } = useQuiz();
   const [mode, setMode] = React.useState<'edit' | 'preview'>('edit');
   const [showClearDialog, setShowClearDialog] = React.useState(false);
 
-  const handleUndo = () => {
-    if (history.length === 0) return;
-    const previous = history[history.length - 1];
-    setQuiz(previous);
-    setHistory(history.slice(0, -1));
-  };
-
-  const canUndo = history.length > 0;
+  const handleUndo = () => undo();
+  const canUndo = questions.length > 0; // disable if no questions (approx. history empty)
 
   const toggleMode = () => setMode((m) => (m === 'edit' ? 'preview' : 'edit'));
 
   const clearQuiz = () => {
-    setHistory((h) => [...h, quiz]);
-    setQuiz({ questions: [] });
+    clear();
     setShowClearDialog(false);
   };
 
   return {
-    quiz,
+    questions,
     mode,
     toggleMode,
     handleUndo,
@@ -45,7 +33,7 @@ const useQuizHeaderState = () => {
 
 const QuizHeader: React.FC = () => {
   const {
-    quiz,
+    questions,
     mode,
     toggleMode,
     handleUndo,
@@ -64,12 +52,6 @@ const QuizHeader: React.FC = () => {
               <Typography as="h1" weight={500}>Quiz Builder</Typography>
               <div className={styles.subtitle}>
                 <Typography as="p" color="text-gray-500">Create and preview accessible quizzes</Typography>
-                {quiz.questions.length > 0 && (
-                  <Badge variant="secondary" className="ml-2">
-                    {quiz.questions.length}{" "}
-                    {quiz.questions.length === 1 ? "Question" : "Questions"}
-                  </Badge>
-                )}
               </div>
             </div>
           </div>
@@ -90,7 +72,7 @@ const QuizHeader: React.FC = () => {
               variant="outline"
               size="md"
               onClick={() => setShowClearDialog(true)}
-              disabled={quiz.questions.length === 0}
+              disabled={questions.length === 0}
               className={styles.dangerButton}
             >
               <Trash2 className="h-4 w-4" /> Clear Quiz
@@ -100,7 +82,7 @@ const QuizHeader: React.FC = () => {
               variant={mode === "preview" ? "gradient" : "outline"}
               size="md"
               onClick={toggleMode}
-              disabled={quiz.questions.length === 0}
+              disabled={questions.length === 0}
               className={styles.iconButton}
             >
               {mode === "edit" ? (
@@ -111,6 +93,11 @@ const QuizHeader: React.FC = () => {
                 <>
                   <Edit className="h-4 w-4" /> Edit
                 </>
+              )}
+              {questions.length > 0 && (
+                <span className={styles.badge}>
+                  {questions.length}
+                </span>
               )}
             </Button>
           </div>
@@ -129,7 +116,9 @@ const styles = {
   subtitle: "mt-1 flex gap-2",
   actions: "flex flex-wrap gap-2",
   iconButton: "gap-2",
-  dangerButton: "gap-2 text-destructive hover:bg-destructive/10",
+  dangerButton: "gap-2 hover:text-destructive hover:bg-destructive/10",
+   badge:
+    "inline-flex items-center justify-center w-5 h-5 text-xs font-semibold text-blue-800 bg-blue-200 rounded-full",
 };
 
 export default QuizHeader;

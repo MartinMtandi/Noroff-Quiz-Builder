@@ -81,3 +81,12 @@ export interface QuizContextValue {
   clear: () => void;
   undo: () => void;
 }
+
+export interface BadgeProps {
+  /** CSS utility classes */
+  className?: string;
+  /** Visual state of the badge */
+  state: 'valid' | 'invalid' | 'badge';
+  /** Text content to display inside the badge */
+  text: string;
+}
