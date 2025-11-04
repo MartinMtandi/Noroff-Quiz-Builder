@@ -79,6 +79,7 @@ const QuizBuilder: React.FC = () => {
                     { label: 'Short Text', value: 'short' },
                 ]}
                 validators={[required()]}
+                value={questionType}
                 onChange={(e) => handleQuestionTypeChange(e.target.value as 'single' | 'multiple' | 'short')}
             />
 

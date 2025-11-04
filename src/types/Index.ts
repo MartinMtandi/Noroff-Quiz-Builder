@@ -35,8 +35,12 @@ export interface TextAreaFieldProps
 export interface RadioGroupFieldProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "type">,
     BaseFieldProps {
+  /** group name */
   name: string;
+  /** options to render */
   options: Option[];
+  /** controlled value */
+  value: string;
 }
 
 export interface SelectFieldProps
