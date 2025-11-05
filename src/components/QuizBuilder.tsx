@@ -8,6 +8,7 @@ import { OptionItem } from '@/types/Index';
 
 const QuizBuilder: React.FC = () => {
     const { add, questions } = useQuiz();
+    const [success, setSuccess] = useState(false);
     const [questionType, setQuestionType] = useState<'single' | 'multiple' | 'short' | ''>('');
     const [submitted, setSubmitted] = useState(false);
     const [questionTitle, setQuestionTitle] = useState('');
@@ -23,6 +24,7 @@ const QuizBuilder: React.FC = () => {
   );
 
     const handleQuestionTypeChange = (type: 'single' | 'multiple' | 'short') => {
+        setSuccess(false);
         // selecting a new type shows/hides fields; reset validation state
         setSubmitted(false);
         setQuestionType(type);
@@ -35,6 +37,7 @@ const QuizBuilder: React.FC = () => {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setSubmitted(true);
+        setSuccess(false);
         if (!questionType) return; // type safety – don't save if not chosen
         add({
             id: crypto.randomUUID(),
@@ -50,6 +53,7 @@ const QuizBuilder: React.FC = () => {
             { text: '', correct: false },
         ]);
         setSubmitted(false);
+        setSuccess(true);
     };
 
     return (
@@ -57,7 +61,7 @@ const QuizBuilder: React.FC = () => {
             <div className={styles.question}>
                 <ShieldCheck className={styles.shieldCheck} />
                 <Typography as="p" color="text-blue-600" weight={500}>{(questions?.length ?? 0) + 1}</Typography>
-                <Badge state={isFormValid ? 'valid' : 'invalid'} text={isFormValid ? 'Valid' : 'Invalid'} />
+                <Badge state={success ? 'valid' : (isFormValid ? 'valid' : 'invalid')} text={success ? 'Success' : (isFormValid ? 'Valid' : 'Invalid')} />
             </div>
                 <InputField
                     value={questionTitle}
@@ -66,7 +70,10 @@ const QuizBuilder: React.FC = () => {
                     placeholder="Enter question title"
                 validators={[required()]}
                 submitted={submitted}
-                onChange={(e) => setQuestionTitle((e.target as HTMLInputElement).value)}
+                onChange={(e) => {
+                    setSuccess(false);
+                    setQuestionTitle((e.target as HTMLInputElement).value);
+                }}
             />
             <RadioGroupField
                 submitted={submitted}
@@ -84,7 +91,10 @@ const QuizBuilder: React.FC = () => {
             />
 
             {questionType !== '' && questionType !== 'short' && (
-                <OptionsField submitted={submitted} type={questionType as 'single' | 'multiple'} options={options} setOptions={setOptions} />
+                <OptionsField submitted={submitted} type={questionType as 'single' | 'multiple'} options={options} setOptions={(opts) => {
+                    setSuccess(false);
+                    setOptions(opts);
+                }} />
             )}
 
             {/* Footer */}
