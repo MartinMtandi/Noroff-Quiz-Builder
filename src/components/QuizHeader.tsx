@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Undo, Trash2, Eye, Edit } from '@/components/icons/Index';
 import { Button, Badge, Typography } from '@/components/ui';
 import LogoBanner from '@/components/LogoBanner';
@@ -6,13 +7,21 @@ import { useQuiz } from '@/hooks/useQuiz';
 
 const useQuizHeaderState = () => {
   const { questions, undo, clear } = useQuiz();
-  const [mode, setMode] = React.useState<'edit' | 'preview'>('edit');
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [mode, setMode] = React.useState<'edit' | 'preview'>(location.pathname === '/quiz-preview' ? 'preview' : 'edit');
   const [showClearDialog, setShowClearDialog] = React.useState(false);
 
   const handleUndo = () => undo();
   const canUndo = questions.length > 0; // disable if no questions (approx. history empty)
 
-  const toggleMode = () => setMode((m) => (m === 'edit' ? 'preview' : 'edit'));
+  const toggleMode = () => {
+    setMode((prev) => {
+      const next = prev === 'edit' ? 'preview' : 'edit';
+      navigate(next === 'preview' ? '/quiz-preview' : '/');
+      return next;
+    });
+  };
 
   const clearQuiz = () => {
     clear();
