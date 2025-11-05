@@ -6,6 +6,7 @@ import CheckboxField from '@/components/ui/CheckboxField';
 import InputField from '@/components/ui/InputField';
 import Button from '@/components/ui/Button';
 import { Answers } from '@/types/Index';
+import { required } from '@/utils/validators';
 
 const QuizPreview: React.FC = () => {
   const { questions } = useQuiz();
@@ -47,6 +48,8 @@ const QuizPreview: React.FC = () => {
 
           {q.type === 'single' && (
             <RadioGroupField
+              submitted={submitted}
+              validators={[required()]}
               label=""
               name={`q-${q.id}`}
               value={typeof answers[q.id] === 'string' ? (answers[q.id] as string) : ''}
@@ -71,6 +74,8 @@ const QuizPreview: React.FC = () => {
           {q.type === 'short' && (
             <InputField
               label="Your answer"
+              submitted={submitted}
+              validators={[required()]}
               value={typeof answers[q.id] === 'string' ? (answers[q.id] as string) : ''}
               onChange={(e) => handleShortChange(q.id, e.target.value)}
             />
