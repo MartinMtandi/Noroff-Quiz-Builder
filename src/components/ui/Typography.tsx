@@ -21,7 +21,7 @@ type FontWeight = 'normal' | 500;
 interface TypographyProps extends Record<string, any> {
   /** HTML tag to render. Determines default sizing */
   as?: TypographyVariant;
-  /** Font weight */
+  /** Font weight. If omitted, no font-weight utility is added allowing outer classes to control weight */
   weight?: FontWeight;
   /** Tailwind CSS color class or inline value */
   color?: string;
@@ -47,7 +47,7 @@ const weightClasses: Record<FontWeight, string> = {
 
 const Typography: React.FC<TypographyProps> = ({
   as = 'p',
-  weight = 'normal',
+  weight,
   color,
   className,
   children,
@@ -58,7 +58,12 @@ const Typography: React.FC<TypographyProps> = ({
 
   return (
     <Tag
-      className={cx(sizeClasses[as], weightClasses[weight], colorClass, className)}
+      className={cx(
+        sizeClasses[as],
+        weight ? weightClasses[weight] : undefined,
+        colorClass,
+        className,
+      )}
       {...rest}
     >
       {children}

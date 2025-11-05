@@ -6,6 +6,7 @@ import { RadioGroupFieldProps } from "@/types/Index";
 
 const RadioGroupField: React.FC<RadioGroupFieldProps> = ({
   label,
+  labelClassName,
   name,
   options,
   validators,
@@ -35,7 +36,7 @@ const RadioGroupField: React.FC<RadioGroupFieldProps> = ({
 
   return (
     <fieldset className={className}>
-      <Typography as="label" htmlFor={name} className={fs.label}>
+      <Typography as="label" htmlFor={name} className={`${fs.label} ${labelClassName || ''}`}>
         {label}
       </Typography>
 
@@ -53,7 +54,7 @@ const RadioGroupField: React.FC<RadioGroupFieldProps> = ({
               onBlur={handleBlur}
               className={styles.radioInput}
             />
-            <Typography as="span" htmlFor={opt.value}>{opt.label}</Typography>
+            <Typography as="span" className="text-sm" htmlFor={opt.value}>{opt.label}</Typography>
           </label>
         ))}
       </div>

@@ -18,10 +18,10 @@ const QuizBuilder: React.FC = () => {
     ]);
 
     const allOptionsFilled = options.every((o) => o.text.trim() !== '');
-  const hasCorrectOption = options.some((o) => o.correct);
-  const isFormValid = questionTitle.trim() !== '' && questionType !== '' && (
-    questionType === 'short' || (allOptionsFilled && hasCorrectOption)
-  );
+    const hasCorrectOption = options.some((o) => o.correct);
+    const isFormValid = questionTitle.trim() !== '' && questionType !== '' && (
+        questionType === 'short' || (allOptionsFilled && hasCorrectOption)
+    );
 
     const handleQuestionTypeChange = (type: 'single' | 'multiple' | 'short') => {
         setSuccess(false);
@@ -63,11 +63,12 @@ const QuizBuilder: React.FC = () => {
                 <Typography as="p" color="text-blue-600" weight={500}>{(questions?.length ?? 0) + 1}</Typography>
                 <Badge state={success ? 'valid' : (isFormValid ? 'valid' : 'invalid')} text={success ? 'Success' : (isFormValid ? 'Valid' : 'Invalid')} />
             </div>
-                <InputField
-                    value={questionTitle}
-                    label="*Question Title"
-                    name="questionTitle"
-                    placeholder="Enter question title"
+            <InputField
+                value={questionTitle}
+                label="*Question Title"
+                labelClassName="font-medium"
+                name="questionTitle"
+                placeholder="Enter question title"
                 validators={[required()]}
                 submitted={submitted}
                 onChange={(e) => {
@@ -78,6 +79,7 @@ const QuizBuilder: React.FC = () => {
             <RadioGroupField
                 submitted={submitted}
                 label="*Question Type"
+                labelClassName="font-medium"
                 name="questionType"
                 id="questionType"
                 options={[
@@ -108,9 +110,9 @@ const QuizBuilder: React.FC = () => {
 };
 
 const styles = {
-  footer: "border-t pt-4 mt-4 flex justify-end -mx-6 px-6",
-  question: "flex items-center gap-2",
-  shieldCheck: "h-4 w-4 text-blue-600",
+    footer: "border-t pt-4 mt-4 flex justify-end -mx-6 px-6",
+    question: "flex items-center gap-2",
+    shieldCheck: "h-4 w-4 text-blue-600",
 };
 
 export default QuizBuilder;

@@ -4,6 +4,8 @@ import { ReactNode, InputHTMLAttributes, TextareaHTMLAttributes, SelectHTMLAttri
 // Common props for all field components
 interface BaseFieldProps {
   label: string;
+  /** Optional additional classes for label */
+  labelClassName?: string;
   validators?: Validator[];
   submitted?: boolean;
 }

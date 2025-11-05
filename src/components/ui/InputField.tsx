@@ -6,6 +6,7 @@ import * as fs from '@/utils/fieldStyles';
 
 const InputField: React.FC<InputFieldProps> = ({
   label,
+  labelClassName,
   validators,
   className,
   onBlur,
@@ -38,7 +39,7 @@ const InputField: React.FC<InputFieldProps> = ({
 
   return (
     <div className={className}>
-      <Typography as="label" htmlFor={inputId} className={fs.label}>{label}</Typography>
+      <Typography as="label" htmlFor={inputId} className={`${fs.label} ${labelClassName || ''}`}>{label}</Typography>
       <input
         id={inputId}
         {...props}
