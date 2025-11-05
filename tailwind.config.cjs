@@ -30,4 +30,13 @@ module.exports = { content: ['./index.html', './src/**/*.{ts,tsx}'], theme: { ex
       backgroundImage: {
         'gradient-primary': 'linear-gradient(to bottom, rgba(147,51,234,0.10) 0%, rgba(147,51,234,0.06) 20%, rgba(59,130,246,0.05) 40%, rgba(59,130,246,0.03) 60%, rgba(255,255,255,0.02) 80%, rgba(255,255,255,0) 100%)',
       },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+      },
+      animation: {
+        fadeIn: 'fadeIn 0.5s ease-in-out forwards',
+      }
     } }, plugins: [] };

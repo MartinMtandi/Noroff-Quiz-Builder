@@ -43,7 +43,11 @@ const QuizPreview: React.FC = () => {
   return (
     <form onSubmit={handleSubmit} className="space-y-6 p-6">
       {questions.map((q, idx) => (
-        <div key={q.id} className="space-y-3">
+        <div
+          key={q.id}
+          className="space-y-3 opacity-0 animate-fadeIn"
+          style={{ animationDelay: `${idx * 0.2}s` }}
+        >
           <Typography as="h5" weight={500}>{idx + 1}. {q.title}</Typography>
 
           {q.type === 'single' && (
