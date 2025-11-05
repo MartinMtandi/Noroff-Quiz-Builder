@@ -66,7 +66,7 @@ const QuizBuilder: React.FC = () => {
             <InputField
                 value={questionTitle}
                 label="*Question Title"
-                labelClassName="font-medium"
+                labelClassName="font-medium text-lg"
                 name="questionTitle"
                 placeholder="Enter question title"
                 validators={[required()]}
@@ -79,7 +79,7 @@ const QuizBuilder: React.FC = () => {
             <RadioGroupField
                 submitted={submitted}
                 label="*Question Type"
-                labelClassName="font-medium"
+                labelClassName="font-medium text-lg"
                 name="questionType"
                 id="questionType"
                 options={[
