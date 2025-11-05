@@ -6,6 +6,8 @@ interface BaseFieldProps {
   label: string;
   /** Optional additional classes for label */
   labelClassName?: string;
+  /** Typography 'as' tag for label element */
+  labelAs?: 'p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'label' | 'legend';
   validators?: Validator[];
   submitted?: boolean;
 }

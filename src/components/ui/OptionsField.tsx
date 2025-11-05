@@ -31,7 +31,7 @@ const OptionsField: React.FC<OptionsFieldProps> = ({ type, options, setOptions, 
 
   return (
     <div className="space-y-3">
-      <Typography as="label" weight={500}>*Options</Typography>
+      <Typography as="h5" weight={500}>*Options</Typography>
       {options.map((opt, idx) => (
         <div key={idx} className="flex items-start gap-2">
           {type === 'single' ? (
