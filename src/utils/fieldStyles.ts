@@ -5,6 +5,6 @@ export const baseInput =
 export const baseError =
   'border-red-500 focus:border-red-500 focus:ring-red-500';
 
-export const label = 'mb-1 block text-sm text-gray-700 font-medium';
+export const label = 'mb-1 block text-sm text-gray-700';
 
 export const errorText = 'mt-1 text-sm text-red-600';

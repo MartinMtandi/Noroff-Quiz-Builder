@@ -97,3 +97,8 @@ export interface BadgeProps {
   /** Text content to display inside the badge */
   text: string;
 }
+
+export interface Answers {
+  [questionId: string]: string | string[];
+}
+
