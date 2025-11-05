@@ -25,8 +25,11 @@ export interface CheckboxFieldProps
     BaseFieldProps {}
 
 export interface InputFieldProps
-  extends InputHTMLAttributes<HTMLInputElement>,
-    BaseFieldProps {}
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'defaultValue'>,
+    BaseFieldProps {
+  /** Controlled value */
+  value: string;
+}
 
 export interface TextAreaFieldProps
   extends TextareaHTMLAttributes<HTMLTextAreaElement>,
