@@ -78,7 +78,9 @@ const QuizPreview: React.FC = () => {
         </div>
       ))}
 
-      <Button type="submit" variant="gradient" size="lg">Submit Answers</Button>
+      <div className="form-footer">
+        <Button type="submit" variant="gradient" size="lg">Submit Answers</Button>
+      </div>
 
       {submitted && (
         <Typography as="p" className="text-center text-green-600 font-medium">Thank you! Your answers have been recorded.</Typography>

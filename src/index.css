@@ -1,3 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom utility classes */
+.form-footer {@apply border-t pt-4 mt-4 flex justify-end -mx-6 px-6;}

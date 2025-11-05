@@ -102,7 +102,7 @@ const QuizBuilder: React.FC = () => {
             )}
 
             {/* Footer */}
-            <div className={styles.footer}>
+            <div className="form-footer">
                 <Button className="gap-2" variant="gradientBorder" size="lg" type="submit">
                     <Add className="h-4 w-4" /> Save Question
                 </Button>
@@ -112,7 +112,6 @@ const QuizBuilder: React.FC = () => {
 };
 
 const styles = {
-    footer: "border-t pt-4 mt-4 flex justify-end -mx-6 px-6",
     question: "flex items-center gap-2",
     shieldCheck: "h-4 w-4 text-blue-600",
 };
