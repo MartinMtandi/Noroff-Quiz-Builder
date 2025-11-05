@@ -66,6 +66,7 @@ const QuizPreview: React.FC = () => {
                   label={opt.text}
                   checked={Array.isArray(answers[q.id]) ? (answers[q.id] as string[]).includes(opt.text) : false}
                   onChange={(e) => handleMultipleChange(q.id, opt.text, e.target.checked)}
+                  validators={[required('Please select at least one option')]}
                 />
               ))}
             </div>
