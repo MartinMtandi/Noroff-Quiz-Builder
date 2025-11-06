@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { InputField, RadioGroupField, Button, Typography, Badge } from '@/components/ui';
+import { InputField, RadioGroupField, Button, Typography, Badge, Card } from '@/components/ui';
 import OptionsField from '@/components/ui/OptionsField';
 import { required } from '@/utils/validators';
 import { OptionItem, Question } from '@/types/Index';
@@ -55,13 +55,8 @@ const EditQuestionForm: React.FC<EditQuestionFormProps> = ({ question }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div className={styles.questionHeader}>
-        <ShieldCheck className={styles.shieldCheck} />
-        <Typography as="p" color="text-blue-600" weight={500}>{questionTitle}</Typography>
-        <Badge state={success ? 'valid' : (isFormValid ? 'valid' : 'invalid')} text={success ? 'Saved' : (isFormValid ? 'Valid' : 'Invalid')} />
-      </div>
-
+   <Card>
+     <form onSubmit={handleSubmit} className="space-y-4">
       <InputField
         value={questionTitle}
         label="*Question Title"
@@ -116,12 +111,8 @@ const EditQuestionForm: React.FC<EditQuestionFormProps> = ({ question }) => {
         </Button>
       </div>
     </form>
+   </Card>
   );
-};
-
-const styles = {
-  questionHeader: 'flex items-center gap-2',
-  shieldCheck: 'h-4 w-4 text-blue-600',
 };
 
 export default EditQuestionForm;

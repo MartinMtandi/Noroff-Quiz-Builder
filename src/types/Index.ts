@@ -106,3 +106,20 @@ export interface Answers {
   [questionId: string]: string | string[];
 }
 
+export interface AccordionItem {
+  /** Unique id for the item */
+  id: string;
+  /** Header element shown for the item */
+  header: React.ReactNode;
+  /** Content revealed when the item is open */
+  content: React.ReactNode;
+}
+
+export interface AccordionProps {
+  /** Items to render */
+  items: AccordionItem[];
+  /** Allow multiple items to stay open simultaneously */
+  allowMultiple?: boolean;
+  /** Optional additional utility classes */
+  className?: string;
+}

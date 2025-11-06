@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "@/components/ui/Card";
 import QuizBuilder from "@/components/QuizBuilder";
-import { Accordion } from "@/components/ui";
+import { Accordion, Typography } from "@/components/ui";
 import { useQuiz } from "@/hooks/useQuiz";
 import EditQuestionForm from "@/components/EditQuestionForm";
 
@@ -22,10 +22,12 @@ const Index: React.FC = () => {
       {items.length > 0 ? (
         <Accordion items={items} allowMultiple className="mx-6" />
       ) : (
-        <p className="text-center text-gray-500">No questions yet. Add some above!</p>
+        <Typography as="p" className="text-center pb-6">No questions yet. Add some above!</Typography>
       )}
     </React.Fragment>
   );
 };
+
+
 
 export default Index;
