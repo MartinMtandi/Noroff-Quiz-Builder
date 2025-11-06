@@ -46,6 +46,7 @@ const Accordion: React.FC<AccordionProps> = ({ items, allowMultiple = false, cla
         return (
           <div key={id} className="border-b border-gray-200 last:border-none">
             <button
+              id={`accordion-header-${id}`}
               type="button"
               onClick={() => toggle(id)}
               className={cx(
