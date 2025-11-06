@@ -2,6 +2,7 @@ export { default as Button } from './Button';
 export { default as Badge } from './Badge';
 export { default as Typography } from './Typography';
 export { default as Card } from './Card';
+export { default as Accordion } from './Accordion';
 
 // Form fields
 export { default as InputField } from './InputField';
