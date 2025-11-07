@@ -12,6 +12,7 @@ const QuizPreview: React.FC = () => {
   const { questions } = useQuiz();
   const [answers, setAnswers] = useState<Answers>({});
   const [submitted, setSubmitted] = useState(false);
+  const [valid, setValid] = useState(true);
 
   const handleSingleChange = (qid: string, value: string) => {
     setAnswers((prev) => ({ ...prev, [qid]: value }));
@@ -31,8 +32,28 @@ const QuizPreview: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // compute validity
+    const formIsValid = questions.every((q) => {
+      const ans = answers[q.id];
+      if (q.type === 'single') {
+        return typeof ans === 'string' && ans.trim() !== '';
+      }
+      if (q.type === 'multiple') {
+        return Array.isArray(ans) && ans.length > 0;
+      }
+      if (q.type === 'short') {
+        return typeof ans === 'string' && ans.trim() !== '';
+      }
+      return false;
+    });
+
     setSubmitted(true);
-    // Currently we just log answers; scoring can be implemented later.
+    setValid(formIsValid);
+
+    if (!formIsValid) return; // prevent processing
+
+    // For now just log answers
     console.log('User answers', answers);
   };
 
@@ -92,7 +113,7 @@ const QuizPreview: React.FC = () => {
         <Button type="submit" variant="gradient" size="lg">Submit Answers</Button>
       </div>
 
-      {submitted && (
+      {submitted && valid && (
         <Typography as="p" className="text-center text-green-600 font-medium">Thank you! Your answers have been recorded.</Typography>
       )}
     </form>
