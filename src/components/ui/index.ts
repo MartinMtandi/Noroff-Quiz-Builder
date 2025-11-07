@@ -4,6 +4,7 @@ export { default as Typography } from './Typography';
 export { default as Card } from './Card';
 export { default as Accordion } from './Accordion';
 export { default as Modal } from './Modal';
+export { default as ConfirmationDialog } from './ConfirmationDialog';
 
 // Form fields
 export { default as InputField } from './InputField';
