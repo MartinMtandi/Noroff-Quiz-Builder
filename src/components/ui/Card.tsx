@@ -1,12 +1,8 @@
+import { CardProps } from '@/types/Index';
 import React, { useEffect, useRef, useState } from 'react';
 
 function cx(...classes: (string | undefined | false)[]) {
   return classes.filter(Boolean).join(' ');
-}
-
-interface CardProps {
-  children: React.ReactNode;
-  className?: string;
 }
 
 /**
