@@ -74,7 +74,7 @@ const QuizHeader: React.FC = () => {
               variant="outline"
               size="md"
               onClick={handleUndo}
-              disabled={!canUndo}
+              disabled={!canUndo || mode === 'preview' }
               className={styles.iconButton}
             >
               <Undo className="h-4 w-4" /> Undo
@@ -84,7 +84,7 @@ const QuizHeader: React.FC = () => {
               variant="outline"
               size="md"
               onClick={() => setShowClearDialog(true)}
-              disabled={questions.length === 0}
+              disabled={questions.length === 0 || mode === 'preview'}
               className={styles.dangerButton}
             >
               <Trash2 className="h-4 w-4" /> Clear Quiz
