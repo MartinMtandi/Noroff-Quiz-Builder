@@ -4,7 +4,7 @@ function cx(...classes: (string | undefined | false)[]) {
 }
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'outline' | 'gradient' | 'gradientBorder';
+  variant?: 'outline' | 'gradient' | 'gradientBorder' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
 }
 
@@ -17,6 +17,8 @@ const variantStyles: Record<string, string> = {
     'text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 shadow-glow',
   gradientBorder:
     'relative inline-flex items-center justify-center p-0.5 overflow-hidden group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 text-gray-900 hover:text-white rounded-lg',
+  ghost:
+    'bg-transparent text-gray-900 hover:bg-gray-100 focus:ring-0 dark:text-gray-400 dark:hover:bg-gray-700 border-none',
 };
 
 const innerSpanStyles: Record<string, string> = {
