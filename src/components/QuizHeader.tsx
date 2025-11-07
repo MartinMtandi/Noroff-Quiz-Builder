@@ -117,7 +117,7 @@ const QuizHeader: React.FC = () => {
 };
 
 const styles = {
-  header: "w-full bg-gradient-card shadow-elegant backdrop-blur-sm",
+  header: "w-full bg-gradient-card shadow-elegant backdrop-blur-sm rounded-t-lg",
   container: "container mx-auto",
   banner: "bg-gradient-primary flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between",
   left: "flex gap-3",
