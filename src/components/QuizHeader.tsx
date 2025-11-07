@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Undo, Trash2, Eye, Edit } from '@/components/icons/Index';
-import { Button, Badge, Typography } from '@/components/ui';
+import { Button, Badge, Typography, ConfirmationDialog } from '@/components/ui';
 import LogoBanner from '@/components/LogoBanner';
 import { useQuiz } from '@/hooks/useQuiz';
 
@@ -48,6 +48,8 @@ const QuizHeader: React.FC = () => {
     handleUndo,
     canUndo,
     clearQuiz,
+    showClearDialog,
+    setShowClearDialog,
   } = useQuizHeaderState();
 
   return (
@@ -80,7 +82,7 @@ const QuizHeader: React.FC = () => {
             <Button
               variant="outline"
               size="md"
-              onClick={clearQuiz}
+              onClick={() => setShowClearDialog(true)}
               disabled={questions.length === 0}
               className={styles.dangerButton}
             >
@@ -112,6 +114,16 @@ const QuizHeader: React.FC = () => {
           </div>
         </div>
       </div>
+      {/* Confirmation dialog */}
+      <ConfirmationDialog
+        open={showClearDialog}
+        onCancel={() => setShowClearDialog(false)}
+        onConfirm={clearQuiz}
+        title="Clear Quiz"
+        message="Are you sure you want to remove all questions?"
+        confirmText="Clear"
+        cancelText="Cancel"
+      />
     </header>
   );
 };
