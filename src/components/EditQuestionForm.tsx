@@ -46,6 +46,8 @@ const EditQuestionForm: React.FC<EditQuestionFormProps> = ({ question, onSaveSuc
     e.preventDefault();
     setSubmitted(true);
     setSuccess(false);
+    setSuccess(false);
+    if (!isFormValid) return;
     update({
       ...question,
       title: questionTitle.trim(),
@@ -128,7 +130,7 @@ const EditQuestionForm: React.FC<EditQuestionFormProps> = ({ question, onSaveSuc
 
         {/* Footer */}
         <div className={styles.footerContainer}>
-          <Button variant="gradientBorder" size="lg" type="submit" className="gap-2">
+          <Button variant="gradientBorder" size="lg" type="submit" className="gap-2" disabled={!isFormValid}>
             <Add className={styles.iconSmall} /> Save Changes
           </Button>
         </div>

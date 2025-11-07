@@ -38,7 +38,7 @@ const QuizBuilder: React.FC = () => {
         e.preventDefault();
         setSubmitted(true);
         setSuccess(false);
-        if (!questionType) return; // type safety – don't save if not chosen
+        if (!isFormValid) return;
         add({
             id: crypto.randomUUID(),
             title: questionTitle.trim(),
@@ -103,7 +103,7 @@ const QuizBuilder: React.FC = () => {
 
             {/* Footer */}
             <div className="form-footer">
-                <Button className="gap-2" variant="gradientBorder" size="lg" type="submit">
+                <Button className="gap-2" variant="gradientBorder" size="lg" type="submit" disabled={!isFormValid}>
                     <Add className="h-4 w-4" /> Save Question
                 </Button>
             </div>
