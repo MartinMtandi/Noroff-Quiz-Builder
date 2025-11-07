@@ -10,6 +10,7 @@ const InputField: React.FC<InputFieldProps> = ({
   labelAs = 'label',
   validators,
   className,
+  inputClassName = '',
   onBlur,
   onChange,
   submitted = false,
@@ -47,7 +48,7 @@ const InputField: React.FC<InputFieldProps> = ({
         value={value}
         onChange={handleChange}
         onBlur={handleBlur}
-        className={error ? `${fs.baseInput} ${fs.baseError}` : fs.baseInput}
+        className={`${error ? `${fs.baseInput} ${fs.baseError}` : fs.baseInput} ${inputClassName}`}
       />
       {error && (
         <Typography as="p" className={fs.errorText}>

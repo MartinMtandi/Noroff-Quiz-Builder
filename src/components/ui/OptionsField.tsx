@@ -67,6 +67,7 @@ const OptionsField: React.FC<OptionsFieldProps> = ({ type, options, setOptions, 
               onChange={(e) => handleTextChange(idx, e.target.value)}
               validators={[required()]}
               submitted={submitted}
+              inputClassName={styles.inputField}
             />
             <Button
               variant="ghost"
@@ -91,6 +92,7 @@ const OptionsField: React.FC<OptionsFieldProps> = ({ type, options, setOptions, 
 
 const styles = {
   deleteButton: "absolute inset-y-0 right-1.5 top-1 my-auto p-2 flex items-center justify-center gap-0 disabled:opacity-40",
+  inputField: 'pr-12',
 }
 
 export default OptionsField;

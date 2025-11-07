@@ -33,6 +33,8 @@ export interface InputFieldProps
     BaseFieldProps {
   /** Controlled value */
   value: string;
+  /** Tailwind classes applied directly to the <input> element */
+  inputClassName?: string;
 }
 
 export interface TextAreaFieldProps
