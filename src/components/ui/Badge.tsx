@@ -48,14 +48,14 @@ const stateStyles: Record<BadgeProps['state'], string> = {
 
 /* ------------ Component ------------ */
 const Badge: React.FC<BadgeProps> = ({ state, text, className }) => {
-  const Icon = state === 'valid' ? CheckIcon : state === 'invalid' ? CrossIcon : null;
+  const Icon = state === 'invalid' ? CrossIcon : CheckIcon;
   return (
     <span
       className={`inline-flex items-center gap-1 rounded-full h-6 px-2 text-xs font-medium leading-none whitespace-nowrap ${stateStyles[state]} ${
         className || ''
       }`}
     >
-      {Icon && <Icon className={state === 'valid' ? 'text-success' : 'text-destructive'} aria-label={state} />}
+      {Icon && <Icon className={state === 'invalid' ? 'text-destructive' : 'text-success'} aria-label={state} /> }
       {text}
     </span>
   );
