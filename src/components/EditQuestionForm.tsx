@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { InputField, RadioGroupField, Button, Card } from '@/components/ui';
 import OptionsField from '@/components/ui/OptionsField';
 import { required } from '@/utils/validators';
@@ -15,6 +15,15 @@ const EditQuestionForm: React.FC<EditQuestionFormProps> = ({ question }) => {
   const [submitted, setSubmitted] = useState(false);
   const [questionTitle, setQuestionTitle] = useState(question.title);
   const [options, setOptions] = useState<OptionItem[]>(question.options);
+
+  // keep local state synced when question prop changes (e.g., after undo)
+  useEffect(() => {
+    setQuestionTitle(question.title);
+    setQuestionType(question.type);
+    setOptions(question.options);
+    setSuccess(false);
+    setSubmitted(false);
+  }, [question]);
 
   const allOptionsFilled = options.every((o) => o.text.trim() !== '');
   const hasCorrectOption = options.some((o) => o.correct);
