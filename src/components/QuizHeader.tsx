@@ -16,12 +16,13 @@ const useQuizHeaderState = () => {
   const canUndo = questions.length > 0; // disable if no questions (approx. history empty)
 
   const toggleMode = () => {
-    setMode((prev) => {
-      const next = prev === 'edit' ? 'preview' : 'edit';
-      navigate(next === 'preview' ? '/quiz-preview' : '/');
-      return next;
-    });
+    setMode((prev) => (prev === 'edit' ? 'preview' : 'edit'));
   };
+
+  // navigate after mode changes to avoid state updates during render
+  React.useEffect(() => {
+    navigate(mode === 'preview' ? '/quiz-preview' : '/');
+  }, [mode, navigate]);
 
   const clearQuiz = () => {
     clear();
