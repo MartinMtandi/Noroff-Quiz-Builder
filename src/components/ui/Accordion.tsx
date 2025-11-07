@@ -20,10 +20,14 @@ const Accordion: React.FC<AccordionProps> = ({ items, allowMultiple = false, cla
 
     return (
         <div className={className}>
-            {items.map(({ id, header, content }) => {
+            {items.map(({ id, header, content }, idx) => {
                 const isOpen = openIds.includes(id);
                 return (
-                    <div key={id} className={containerBase}>
+                    <div
+            key={id}
+            className={`${containerBase} opacity-0 animate-fadeIn`}
+            style={{ animationDelay: `${idx * 0.1}s` }}
+          >
                         <button
                             id={`accordion-header-${id}`}
                             type="button"
