@@ -47,7 +47,7 @@ const QuizHeader: React.FC = () => {
     toggleMode,
     handleUndo,
     canUndo,
-    setShowClearDialog,
+    clearQuiz,
   } = useQuizHeaderState();
 
   return (
@@ -80,7 +80,7 @@ const QuizHeader: React.FC = () => {
             <Button
               variant="outline"
               size="md"
-              onClick={() => setShowClearDialog(true)}
+              onClick={clearQuiz}
               disabled={questions.length === 0}
               className={styles.dangerButton}
             >
