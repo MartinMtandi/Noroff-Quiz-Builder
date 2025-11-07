@@ -143,6 +143,8 @@ export interface ModalProps {
 
 export interface EditQuestionFormProps {
   question: Question;
+  /** callback fired after successful save */
+  onSaveSuccess?: () => void;
 }
 
 export interface CardProps {

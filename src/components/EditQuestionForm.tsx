@@ -7,7 +7,7 @@ import { useQuiz } from '@/hooks/useQuiz';
 import { Add, Trash2 } from '@/components/icons/Index';
 import { ConfirmationDialog } from '@/components/ui';
 
-const EditQuestionForm: React.FC<EditQuestionFormProps> = ({ question }) => {
+const EditQuestionForm: React.FC<EditQuestionFormProps> = ({ question, onSaveSuccess }) => {
   const [confirmOpen, setConfirmOpen] = useState(false);
   const { update, remove } = useQuiz();
   const [success, setSuccess] = useState(false);
@@ -53,6 +53,7 @@ const EditQuestionForm: React.FC<EditQuestionFormProps> = ({ question }) => {
       options,
     });
     setSuccess(true);
+    onSaveSuccess?.();
   };
 
   const handleDelete = () => setConfirmOpen(true);

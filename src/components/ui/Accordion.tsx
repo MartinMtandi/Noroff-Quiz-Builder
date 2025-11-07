@@ -39,7 +39,7 @@ const Accordion: React.FC<AccordionProps> = ({ items, allowMultiple = false, cla
                             aria-expanded={isOpen}
                             aria-controls={`accordion-panel-${id}`}
                         >
-                            <span>{header}</span>
+                            {typeof header === 'string' ? <span>{header}</span> : header}
                             <svg
                                 className={cx(iconBase, isOpen && 'rotate-180')}
                                 fill="none"
