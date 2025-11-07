@@ -123,3 +123,19 @@ export interface AccordionProps {
   /** Optional additional utility classes */
   className?: string;
 }
+
+export interface ModalProps {
+  /** Controls visibility */
+  open: boolean;
+  /** Callback when backdrop or close button is clicked */
+  onClose: () => void;
+  /** Optional title shown at the top */
+  title?: React.ReactNode;
+  /** Content */
+  children: React.ReactNode;
+  /** Optional footer element; if omitted, a default Close button is rendered */
+  footer?: React.ReactNode;
+  /** Custom class for dialog */
+  className?: string;
+}
+
