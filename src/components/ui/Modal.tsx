@@ -31,7 +31,7 @@ const Modal: React.FC<ModalProps> = ({ open, onClose, title, children, footer, c
   if (!open) return null;
 
   const dialog = (
-    <div className={styles.dialog}>
+    <div className={styles.container}>
       {/* Backdrop */}
       <div
         className={styles.backdrop}
@@ -67,6 +67,7 @@ const Modal: React.FC<ModalProps> = ({ open, onClose, title, children, footer, c
 };
 
 const styles = {
+  container: 'fixed inset-0 z-50 flex items-center justify-center',
   backdrop: "absolute inset-0 bg-black/50 backdrop-blur-sm animate-fadeIn",
   dialog: "relative bg-white rounded-lg shadow-lg w-full max-w-lg mx-4 animate-scaleIn",
   header: "flex items-center justify-between p-4 border-b",

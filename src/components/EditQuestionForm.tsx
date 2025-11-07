@@ -2,15 +2,13 @@ import React, { useState } from 'react';
 import { InputField, RadioGroupField, Button, Card } from '@/components/ui';
 import OptionsField from '@/components/ui/OptionsField';
 import { required } from '@/utils/validators';
-import { OptionItem, Question } from '@/types/Index';
+import { EditQuestionFormProps, OptionItem } from '@/types/Index';
 import { useQuiz } from '@/hooks/useQuiz';
 import { Add, Trash2 } from '@/components/icons/Index';
-
-interface EditQuestionFormProps {
-  question: Question;
-}
+import { ConfirmationDialog } from '@/components/ui';
 
 const EditQuestionForm: React.FC<EditQuestionFormProps> = ({ question }) => {
+  const [confirmOpen, setConfirmOpen] = useState(false);
   const { update, remove } = useQuiz();
   const [success, setSuccess] = useState(false);
   const [questionType, setQuestionType] = useState<'single' | 'multiple' | 'short'>(question.type);
@@ -48,14 +46,16 @@ const EditQuestionForm: React.FC<EditQuestionFormProps> = ({ question }) => {
     setSuccess(true);
   };
 
-  const handleDelete = () => {
-    if (confirm('Delete this question?')) {
-      remove(question.id);
-    }
+  const handleDelete = () => setConfirmOpen(true);
+
+  const handleDeleteConfirmed = () => {
+    remove(question.id);
+    setConfirmOpen(false);
   };
 
   return (
-    <Card className="relative">
+    <>
+      <Card className="relative">
       {/* Delete Button */}
       <Button
         variant="outline"
@@ -124,6 +124,16 @@ const EditQuestionForm: React.FC<EditQuestionFormProps> = ({ question }) => {
         </div>
       </form>
     </Card>
+      <ConfirmationDialog
+        open={confirmOpen}
+        onCancel={() => setConfirmOpen(false)}
+        onConfirm={handleDeleteConfirmed}
+        title="Delete Question"
+        message="Are you sure you want to delete this question?"
+        confirmText="Delete"
+        cancelText="Cancel"
+      />
+    </>
   );
 };
 

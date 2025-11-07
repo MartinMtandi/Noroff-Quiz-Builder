@@ -139,3 +139,7 @@ export interface ModalProps {
   className?: string;
 }
 
+export interface EditQuestionFormProps {
+  question: Question;
+}
+
